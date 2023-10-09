@@ -36,14 +36,15 @@ venv/bin/activate
 ```
 4. Once you enabled the virtual enviroment, run the following command to install all the dependencies.
 ```bash
+pip install -r requirements.txt
+```
+5. Now it's necessary to initialize the database and migrate the Trip model, in this case we are using SQLite:
+
 ```bash
 flask db init
 flask db migrate -m "Trip table created"
 flask db upgrade
 ```
-pip install -r requirements.txt
-```
-5. Now it's necessary to initialize the database and migrate the Trip model, in this case we are using SQLite:
 
 ## Usage
 
