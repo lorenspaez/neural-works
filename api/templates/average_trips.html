@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Viajes{% endblock %}
+
+{% block content %}
+
+<head>
+    <title>Consulta de Promedio Semanal de Viajes</title>
+</head>
+<body>
+    <h1>Consulta de Promedio Semanal de Viajes</h1>
+
+    {% if weekly_average %}
+    <div>
+        <h2>Promedio Semanal de Viajes seún el bounding box ingresado:</h2>
+        <p>{{ weekly_average }}</p>
+    </div>
+    {% endif %}
+
+    <div class="flex-container">
+        <div class="form-container">
+            <form method="POST" action="/average_trips">
+                <div class="input-container">
+                    <label for="region">Región:</label>
+                    <span class="placeholder-text">Ingresa la región, ej: Chile</span>
+                    <input type="text" id="region" name="region" required>
+                </div>
+        
+                <div class="input-container">
+                    <label for="point1">Primer punto coordenado:</label>
+                    <span class="placeholder-text">Ingresa el primer punto coordenado, en el formato latitud longitud ej: 10.12312 20.45312</span>
+                    <input type="text" id="point1" name="point1" required>
+                </div>
+        
+                <div class="input-container">
+                    <label for="point2">Segundo punto coordenado:</label>
+                    <span class="placeholder-text">Ingresa el segundo punto coordenado, en el formato latitud longitud ej: 11.98432 21.87651</span>
+                    <input type="text" id="point2" name="point2" required>
+                </div>
+        
+                <div class="input-container">
+                    <label for="point3">Tercer punto coordenado:</label>
+                    <span class="placeholder-text">Ingresa el tercer punto coordenado, en el formato latitud longitud ej: 12.34567 22.98765</span>
+                    <input type="text" id="point3" name="point3" required>
+                </div>
+        
+                <div class="input-container">
+                    <label for="point4">Cuarto punto coordenado:</label>
+                    <span class="placeholder-text">Ingresa el cuarto punto coordenado, en el formato latitud longitud ej: 13.45678 23.87654</span>
+                    <input type="text" id="point4" name="point4" required>
+                </div>
+        
+                <input type="submit" value="Calcular Promedio">
+            </form>
+        </div>
+            
+        <div class="card-example">
+            <h2>Ejemplo de JSON</h2>
+            <p>A continuación, se muestra un ejemplo de JSON que puedes utilizar en interfaces como POSTMAN para realizar la consulta de promedio semanal de viajes:</p>
+            <pre>
+{
+"region": "Prague",
+"point1": "0 0",
+"point2": "0 100",
+"point3": "100 0",
+"point4": "100 100"
+}
+            </pre>
+            <p>Debes ingresar los 4 puntos coordenados que forman las esquinas del bounding box.</p>
+
+            <p>El json anterior es un ejemplo válido de coordenadas, comento esto porque el orden importa al definir los vertices de un polígono.</p>
+
+            <p>Explicación del orden ===></p>
+            <p>otro ejemplo válido es: </p>
+        <pre>
+{
+"region": "Prague",
+"point1": "0 0",
+"point2": "0 100",
+"point3": "100 100",
+"point4": "100 0"
+}
+                    </pre>
+        </div>
+
+        <div class="card">
+            <h2>Recordatorio Coordenadas en Polígonos</h2>
+            <p>
+                El orden en que se define los vértices de un polígono importa. Para que un polígono sea válido, debes seguir la Convención de la Mano Derecha. Esto significa que los vértices de los polígonos exteriores deben estar en sentido horario, mientras que los agujeros en los polígonos deben tener vértices en sentido antihorario.
+            </p>
+            <p>
+                Por ejemplo, al definir un polígono rectangular, los vértices deben ordenarse en sentido horario: primero el vértice inferior izquierdo, luego el inferior derecho, el superior derecho y, finalmente, el superior izquierdo. Este orden garantiza que se forme un polígono válido.
+            </p>
+            <p>
+                Si los vértices se definen en sentido opuesto, el resultado puede no ser lo que esperabas.
+            </p>
+        </div>        
+    </div>
+</body>
+
+{% endblock %}

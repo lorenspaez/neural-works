@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Neural Works Test{% endblock %}
+
+{% block content %}
+
+<h1>Neural Works Test</h1>
+
+<p>
+    Esta API proporciona una serie de endpoints y vistas que te permiten interactuar con la aplicación y acceder a las funcionalidades. <br>
+    A continuación, encontrarás una descripción de cada uno de los endpoints disponibles.
+</p>
+
+<p> DISCLAIMER: Esta simple aplicación por temas de tiempo no tiene un manejo de errores implementado y/o casos bordes por ingresar mal los inputs, <br>
+    por lo que se sugiere ingresar datos en los forms como indican, o enviar datos en json en el formato esperado.</p>
+
+<div class="card-container">
+    <div class="card">
+        <h2>Crear Viaje</h2>
+        <p>
+        Este endpoint permite crear un nuevo registro de viaje en la base de datos. Puede recibir datos en formato JSON a la ruta /create_trip o mediante un formulario HTML en la vista Crear Viaje. Utiliza el método POST para procesar la solicitud.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Lista de Viajes</h2>
+        <p>
+        Este endpoint proporciona una lista de los último 25 viajes ingresados con un método GET a la ruta /trips.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Viajes Agrupados</h2>
+        <p>
+        Este endpoint proporciona un resumen de los viajes agrupados por región y períodos de tiempo de 6 horas a lo largo de un día. Utiliza el método GET para recuperar los datos en la ruta /grouped_trips.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Promedio Semanal de Viajes</h2>
+        <p>
+        Este endpoint calcula el promedio semanal de la cantidad de viajes para un área definida por un bounding box y la región. Puede recibir datos en formato JSON o mediante un formulario HTML. 
+        Utiliza los métodos GET y POST para procesar la solicitud en la ruta /average_trips
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Cargar Datos</h2>
+        <p>
+            Este endpoint no tiene interfaz, se utiliza para cargar datos desde un archivo CSV en la base de datos con el método GET en la ruta /load_data. 
+            Asegúrate de tener un archivo CSV válido, en este caso se inserto `trips.csv` en la raíz del proyecto antes de usar este endpoint.
+            Disclaimer: cargar un archivo mas de una vez sumará el doble de datos.
+        </p>
+    </div>
+    
+
+    <div class="card">
+        <h2>Informar Estado de Ingesta de Datos</h2>
+        <p>
+        El endpoint /notifications se utiliza para recibir sobre el estado de la ingesta de datos. Utiliza el método POST para enviar información desde /create_trips a /notifications cada vez se ingresa un viaje.
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
+
+{% endblock %}

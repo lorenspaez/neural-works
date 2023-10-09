@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Mi Aplicación{% endblock %}</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Inicio</a></li>
+            <li><a href="{{ url_for('create_trip') }}">Crear Viaje</a></li>
+            <li><a href="{{ url_for('trips') }}">Lista de Viajes</a></li>
+            <li><a href="{{ url_for('grouped_trips') }}">Agrupación de viajes</a></li>
+            <li><a href="{{ url_for('average_trips') }}">Promedio de viajes</a></li>
+        </ul>
+    </nav>
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

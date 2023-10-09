@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Viajes Agrupados{% endblock %}
+
+{% block content %}
+
+<head>
+    <title>Viajes Agrupados</title>
+</head>
+<body>
+    <h1>Viajes agrupados en intervalos de 6 horas y por Región</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Region</th>
+                <th>Interval</th>
+                <th>Count</th>
+                <th>Unique IDs</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trip in trips %}
+            <tr>
+                <td>{{ trip.region }}</td>
+                <td>{{ trip.interval }}</td>
+                <td>{{ trip.count }}</td>
+                <td>
+                    {% for trip_id in trip.trip_ids %}
+                        {{ trip_id }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Crear Viaje{% endblock %}
+
+{% block content %}
+
+<head>
+    <title>Ingresar viaje</title>
+</head>
+<body>
+    <h1>Registra un nuevo viaje</h1>
+    <div class="flex-container">
+        <div class="form-container">
+            <form method="POST" action="/create_trip">
+                <div class="input-container">
+                    <label for="region">Región:</label>
+                    <span class="placeholder-text">Ingresa la región, ej: Chile</span>
+                    <input type="text" id="region" name="region" required>
+                </div>
+
+                <div class="input-container">
+                    <label for="origin_coord">Coordenada de origen:</label>
+                    <span class="placeholder-text">Ingresa el punto coordenado de origen, en el formato latitud longitud ej: 10.12312342 20.45312354 <br> el decimal es con '.' y la separacion de lat y long es un espacio ' '</span>
+                    <input type="text" id="origin_coord" name="origin_coord" required>
+                </div>
+
+                <div class="input-container">
+                    <label for="destination_coord">Coordenada de llegada:</label>
+                    <span class="placeholder-text">Ingresa el punto coordenado de origen, en el formato latitud longitud ej: 10.12312342 20.45312354 <br> el decimal es con '.' y la separacion de lat y long es un espacio ' '</span>
+                    <input type="text" id="destination_coord" name="destination_coord" required>
+                </div>
+
+                <div class="input-container">
+                    <label for="datasource">Fuente de datos:</label>
+                    <span class="placeholder-text">Ingresa la fuente de datos</span>
+                    <input type="text" id="datasource" name="datasource" required>
+                </div>
+                <input type="submit" value="Enviar">
+                <p>Una vez creas un viaje, revisa la consola del servidor, verás que está activada la notificación de ingesta de datos.</p>
+            </form>
+        </div>
+        
+        <div class="card-example">
+            <h2>Ejemplo de JSON</h2>
+            <p>A continuación, se muestra un ejemplo de JSON que puedes utilizar en in interfaces como POSTMAN para crear viajes:</p>
+            <pre>
+{
+"region": "Chile",
+"origin_coord": "10.12312 20.45312",
+"destination_coord": "11.98432 21.87651",
+"datasource": "Ejemplo"
+}
+            </pre>
+            <p>Otra manera de cargar datos es usando la ruta /load_data, haz un GET  esta y automaticamente se carga trips.csv</p>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

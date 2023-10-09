@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Viajes{% endblock %}
+
+{% block content %}
+
+    <h1>Lista de Viajes</h1>
+    <p>Aquí se visualizan los últimos 25 viajes creados</p>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Región</th>
+                <th>Coordenada origen</th>
+                <th>Coordenada de llegada</th>
+                <th>Fecha y Hora</th>
+                <th>Fuente de datos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trip in trips %}
+                <tr>
+                    <td>{{ trip.region }}</td>
+                    <td>{{ trip.origin_coord }}</td>
+                    <td>{{ trip.destination_coord }}</td>
+                    <td>{{ trip.datetime }}</td>
+                    <td>{{ trip.datasource }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
